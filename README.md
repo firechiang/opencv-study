@@ -14,7 +14,7 @@ $ pip3 install numpy matplotlib opencv_python
  - Saturation: 饱和度，颜色的纯度
  - Value: 明亮度
 
-#### openCV HUE度数对应颜色说明
+#### OpenCV HUE度数对应颜色说明
  - 0度（red）红色
  - 60度（yellow）黄色
  - 120度（green）绿色

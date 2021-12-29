@@ -21,3 +21,16 @@ $ pip3 install numpy matplotlib opencv_python
  - 180（cyan）青色
  - 240度（blue）蓝色
  - 300度（magenta）洋红色
+
+#### openCV Mat（矩阵）属性说明
+|字段    |说明 |
+|----   | ----|
+dims    | 维度，一般就是2维数据
+rows    | 行数
+cols    | 列数
+depth   | 像素的位深
+channels| 通道数/层数（RGB就是3）
+size    | 矩阵大小
+type    | dep+dt+chs（比如 CV_8UC3，8就表示为“像素的位深” + U是数据类型也就是无符号的整型，C3表示数据，C就是char，3表示char的个数就是3）
+data    | 存放数据
+

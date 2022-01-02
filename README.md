@@ -2,6 +2,8 @@
 ```bash
 # 全局安装 numpy（矩阵操作），matplotlib（图像显示），opencv_python（opencv核心库）
 $ pip3 install numpy matplotlib opencv_python
+# Windows使用命令（注意：Windows安装Python建议直接下载.exe格式文件安装，因为这个会默认会安装pip模块）
+$ python -m pip install numpy matplotlib opencv-python
 ```
 
 #### OpenCV色彩空间

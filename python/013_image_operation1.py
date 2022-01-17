@@ -10,7 +10,7 @@ import cv2
 import numpy as np
 
 if __name__ == "__main__":
-    img = cv2.imread("/home/chiangfire/images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
+    img = cv2.imread("../images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
     shape = img.shape
     print(f'宽度={shape[0]},高度={shape[1]}')
     # Logo图片

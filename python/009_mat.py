@@ -6,7 +6,7 @@ import cv2
 
 if __name__ == "__main__":
     # cv2.IMREAD_ANYCOLOR 图片原始颜色，cv2.IMREAD_GRAYSCALE 转灰色图片
-    mat = cv2.imread("/home/chiangfire/images/aaa.jpeg", cv2.IMREAD_ANYCOLOR)
+    mat = cv2.imread("../images/aaa.jpeg", cv2.IMREAD_ANYCOLOR)
     shape = mat.shape
     print(f'高度={shape[0]},宽度={shape[1]},通道数={shape[2]}')
 

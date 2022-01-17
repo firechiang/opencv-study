@@ -38,7 +38,7 @@ if __name__ == "__main__":
     # 创建一个显示窗口,窗口的名字是窗口的唯一ID（cv2.WINDOW_NORMAL 创建的窗口可以改变大小）
     cv2.namedWindow("旧图片",cv2.WINDOW_AUTOSIZE)
     cv2.namedWindow("新图片", cv2.WINDOW_AUTOSIZE)
-    mat = cv2.imread("/home/chiangfire/images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
+    mat = cv2.imread("../images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
 
     # 卷积核简单使用
     # (ddpeth表示图像经过滤波之后它的位深，可取值cv2.CV_8F，cv2.CV_16F，cv2.CV_32F，cv2.CV_64F，一般我们设置-1就是原始图像的位深是多少输出图像的位深就是多少)
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     dy = 0
     # 缩放比例
     scale = 1
-    mat = cv2.imread("/home/chiangfire/images/ddd.jpeg", cv2.IMREAD_ANYCOLOR)
+    mat = cv2.imread("../images/ddd.jpeg", cv2.IMREAD_ANYCOLOR)
     #new =cv2.Sobel(mat,ddpeth,dx,dy,ksize,scale,delta,borderType)
     # 求Y轴边缘
     new1 = cv2.Sobel(mat, ddpeth, dx, dy, ksize)

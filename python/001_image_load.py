@@ -7,7 +7,7 @@ if __name__ == "__main__":
     #cv2.resizeWindow("new",800,500)
     #cv2.imshow("new",0)
     # cv2.IMREAD_ANYCOLOR 图片原始颜色，cv2.IMREAD_GRAYSCALE 转灰色图片
-    mat = cv2.imread("/home/chiangfire/images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
+    mat = cv2.imread("../images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
     # 显示图片窗口
     cv2.imshow("图片",mat)
     # 保存图片（将图片写入磁盘）

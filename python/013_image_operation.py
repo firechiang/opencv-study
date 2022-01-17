@@ -24,7 +24,7 @@ if __name__ == "__main__":
     cv2.namedWindow("异或（位）运算原图", cv2.WINDOW_AUTOSIZE)
     cv2.namedWindow("异或（位）运算新图", cv2.WINDOW_AUTOSIZE)
 
-    img1 = cv2.imread("/home/chiangfire/images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
+    img1 = cv2.imread("../images/aaa.jpeg",cv2.IMREAD_ANYCOLOR)
     shape = img1.shape
     print(f'宽度={shape[0]},高度={shape[1]}')
     # 创建一张图，宽高以及层次和img1一致。* 100 表示这张图的每一个像素的值都乘以100，也就是单个像素的值由1变成了100

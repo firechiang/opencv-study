@@ -7,7 +7,7 @@ import numpy as np
 
 
 if __name__ == "__main__":
-    img = cv2.imread("/home/chiangfire/images/aaa.jpeg", cv2.IMREAD_ANYCOLOR)
+    img = cv2.imread("../images/aaa.jpeg", cv2.IMREAD_ANYCOLOR)
     # 图线缩放
     # (400,400)缩放大小
     #new = cv2.resize(img,(400,400))

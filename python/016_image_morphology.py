@@ -34,7 +34,7 @@ if __name__ == "__main__":
     # cv2.THRESH_TOZERO（表示源图像像素值大于100就取实际值，小于100就取0）（非二值化API主要用于削峰，不常用）
     # cv2.THRESH_TOZERO_INV（表示源图像像素值大于100就取最大值，小于100就取实际值）（非二值化API主要用于削峰，不常用）
     threshType = cv2.THRESH_BINARY
-    # 先将图像转成灰度图像
+    # 先将图像转成灰度图像（将图像转变成单通道）
     mat1 = cv2.cvtColor(mat,cv2.COLOR_BGR2GRAY)
     # 图像全局二值化（就是将整个图像变成黑白图像，要注意的是 threshold 函数只能处理灰度图像，所以要使用 threshold 函数需要先将图像转成灰度图）
     ret,new = cv2.threshold(mat1,thresh,maxVal,threshType)

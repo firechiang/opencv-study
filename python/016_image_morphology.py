@@ -8,8 +8,9 @@
 1，腐蚀（变小就像一块石头被岁月腐蚀得越来越小）和膨胀（变大）
 2，开运算（对图像先做腐蚀再做膨胀）
 3，闭运算（对图像先做膨胀再做腐蚀）
-4，顶帽（插值运算就是给原有图像添加其它图像）
-5，黑帽（插值运算）
+4，梯度运算简单使用（梯度 = 原图像 - 腐蚀后图像）使用场景其实是求边缘轮廓（原图像 - 腐蚀后图像 得到的其实就是边缘轮廓）
+6，顶帽运算（顶帽 = 原图像 - 开运算）适用场景去除图像只要噪点（只剩下噪点的图像 = 原图像 - 开运算（得到去除噪点后的图像））
+7，黑帽运算（黑帽 = 原图像 - 闭运算）适用场景去除图像只留图像内的噪点（只剩下图像内部噪点的图像 = 原图像 - 闭运算（得到去除图像内部噪点后的图像））
 '''
 
 import cv2
@@ -53,20 +54,58 @@ if __name__ == "__main__":
     # cv2.THRESH_BINARY_INV（表示源图像像素值大于100就取0，小于100就取最大值）（二值化常用API）
     threshType = cv2.THRESH_BINARY
     # 注意: adaptiveThreshold 函数只能处理灰度图像，所以要使用 adaptiveThreshold 函数需要先将图像转成灰度图
+    # 注意：卷积核越大计算越精准，也就是处理效果越好
     new = cv2.adaptiveThreshold(mat1,maxVal,adaptiveMethod,threshType,blockSize,C)
 
     # 图像腐蚀简单使用
+    # 卷积核大小（卷积核越大计算越精准）
+    ksize = (5,5)
     # 构建一个3*3的像素，每个像素的值是1（如下图）的卷积核。用这个卷积核去扫描图像（和原始图像进行计算）
     # 1 1 1
     # 1 1 1
     # 1 1 1
-    kernel = np.ones((3, 3), np.uint8)
+    kernel = np.ones(ksize, np.uint8)
+    # 使用openCV API构造腐蚀卷积核
+    # cv2.MORPH_RECT（矩形卷积核，值为全1）
+    # cv2.MORPH_ELLIPSE（椭圆形卷积核，四个角为0，其它为1）
+    # cv2.MORPH_CROSS（交叉卷积核，十字架形状，横竖为1，其它为0）
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT,ksize)
     # 腐蚀次数
     iterations = 1
-    # 腐蚀图像
+    # 腐蚀图像（注意：卷积核越大计算越精准，也就是处理效果越好）
+    # 腐蚀原理：首先扫描到图像边缘，然后将边缘变成黑色，就起到了腐蚀的作用
     new = cv2.erode(mat,kernel,iterations)
 
+    # 图像膨胀简单使用
+    # 膨胀次数
+    iterations = 1
+    # 膨胀原理：一个卷积核，计算到一块像素上，如果中心点是1，它将会它周围所有的像素值都改成1
+    new = cv2.dilate(mat,kernel,iterations)
 
+    # 开运算简单使用（对图像先做腐蚀再做膨胀，也就是说如果图形外面有很多噪点就会被腐蚀掉，也就是开运算可以消除图像外部的噪点）
+    mat = cv2.imread("../images/ggg.png", cv2.IMREAD_ANYCOLOR)
+    # 对图像执行开运算（cv2.MORPH_OPEN 表示开运算）（注意：卷积核越大计算越精准，也就是处理效果越好）
+    new = cv2.morphologyEx(mat,cv2.MORPH_OPEN,kernel)
+
+    # 闭运算简单使用（对图像先做膨胀再做腐蚀，也就是说如果图形内部有很多噪点就会被膨胀覆盖掉，也就是闭运算可以消除图像内部的噪点）
+    mat = cv2.imread("../images/hhh.png", cv2.IMREAD_ANYCOLOR)
+    # 对图像执行闭运算（cv2.MORPH_CLOSE 表示闭运算）（注意：卷积核越大计算越精准，也就是处理效果越好）
+    new = cv2.morphologyEx(mat,cv2.MORPH_CLOSE,kernel)
+
+    # 梯度运算简单使用（梯度 = 原图像 - 腐蚀后图像）使用场景其实是求边缘轮廓（原图像 - 腐蚀后图像 得到的其实就是边缘轮廓）
+    mat = cv2.imread("../images/fff.png", cv2.IMREAD_ANYCOLOR)
+    # 梯度运算（求边缘轮廓）cv2.MORPH_GRADIENT表示梯度运算求，边缘轮廓
+    new = cv2.morphologyEx(mat, cv2.MORPH_GRADIENT, kernel)
+
+    # 顶帽运算简单使用（顶帽 = 原图像 - 开运算）适用场景去除图像只留图像外的噪点（只剩下图像外部噪点的图像 = 原图像 - 开运算（得到去除图像外部噪点后的图像））
+    mat = cv2.imread("../images/ggg.png",cv2.IMREAD_ANYCOLOR)
+    # 顶帽运算（cv2.MORPH_TOPHAT 表示顶帽运算）
+    new = cv2.morphologyEx(mat, cv2.MORPH_TOPHAT, kernel)
+
+    # 黑帽运算简单使用（黑帽 = 原图像 - 闭运算）适用场景去除图像只留图像内的噪点（只剩下图像内部噪点的图像 = 原图像 - 闭运算（得到去除图像内部噪点后的图像））
+    mat = cv2.imread("../images/hhh.png", cv2.IMREAD_ANYCOLOR)
+    # 黑帽运算（cv2.MORPH_BLACKHAT 表示黑帽运算）
+    new = cv2.morphologyEx(mat, cv2.MORPH_BLACKHAT, kernel)
 
     # 显示图片窗口
     cv2.imshow("旧图片",mat)

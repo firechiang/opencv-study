@@ -30,6 +30,7 @@ if __name__ == "__main__":
     # 类型：
     # cv2.THRESH_BINARY（表示源图像像素值大于100就取最大值，小于100就取0）（二值化常用API）
     # cv2.THRESH_BINARY_INV（表示源图像像素值大于100就取0，小于100就取最大值）（二值化常用API）
+    # cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU（自适应）（二值化常用API）
     # cv2.THRESH_TRUNC（表示源图像像素值大于100就取最大值，小于100就取实际值）（非二值化API主要用于削峰，不常用）
     # cv2.THRESH_TOZERO（表示源图像像素值大于100就取实际值，小于100就取0）（非二值化API主要用于削峰，不常用）
     # cv2.THRESH_TOZERO_INV（表示源图像像素值大于100就取最大值，小于100就取实际值）（非二值化API主要用于削峰，不常用）

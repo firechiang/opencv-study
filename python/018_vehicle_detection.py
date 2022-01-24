@@ -58,8 +58,10 @@ def load_video():
     cv2.namedWindow("video",cv2.WINDOW_AUTOSIZE)
     # 加载视频
     cap = cv2.VideoCapture("../video/vehicle.mp4")
-    # 创建BackgroundSubtractorMOG对象，用于去除静态物品（history=表示以多少帧为基准来判断物体是否是动态物体，数值越大计算越精准）
+    # 创建BackgroundSubtractorMOG对象，用于去除静态物品（history（表示以多少帧为基准来判断物体是否是动态物体，数值越大计算越精准），detectShadows（是否检测阴影））
     bgsubmog = cv2.createBackgroundSubtractorMOG2()
+    # 该算法是对MOG算法的改进，而且噪点更低
+    #bgsubmog = cv2.createBackgroundSubtractorKNN()
     #bgsubmog = cv2.bgsegm.createBackgroundSubtractorMOG(history = None)
     # 获取卷积核
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(7,7))

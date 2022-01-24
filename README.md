@@ -6,6 +6,22 @@ $ pip3 install numpy matplotlib opencv_python
 $ python -m pip install numpy matplotlib opencv-python
 ```
 
+#### 安装Tesseract文字识别库
+```bash
+# Linux安装tesseract核心库和tesseract-ocr-traineddata-chinese_simplified简体中文语言包（用于识别简体中文）
+# 注意：如果是Windows系统直接去下载exe文件安装
+$ sudo zypper in tesseract tesseract-ocr-traineddata-chinese_simplified
+
+# 全局安装 tesseract Python接口函数
+$ pip3 install wheel 
+# pytesseract 依赖 wheel 所以先安装 wheel 
+$ pip3 install pytesseract
+
+# Windows使用命令
+$ python -m pip install wheel 
+$ python -m pip install pytesseract
+```
+
 #### OpenCV色彩空间
  - 计算机一般是三原色RGB，而OpenCV则是BGR，也就是排列顺序不一样（排列顺序不一样颜色显示就不一样）
  - 三原色RGB可以想象成创建3副颜色不同的纯色画，然后跌在一起，形成另一个颜色的画
